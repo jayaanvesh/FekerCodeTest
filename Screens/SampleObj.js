@@ -9,6 +9,8 @@ export const Sample = [
     emp_salary: '10,00,000',
     emp_photo_path: require('../Assets/images/jef.jpg'),
     emp_Timeline_path: require('../Assets/images/JefTL.jpg'),
+    latitude: 17.346064,
+    longitude: 78.448519,
   },
   {
     emp_name: 'Raj',
@@ -20,6 +22,8 @@ export const Sample = [
     emp_salary: '2,00,000',
     emp_photo_path: require('../Assets/images/elon.jpg'),
     emp_Timeline_path: require('../Assets/images/elonTL.jpg'),
+    latitude: 17.362455,
+    longitude: 78.429319,
   },
   {
     emp_name: 'Kumar',
@@ -31,6 +35,8 @@ export const Sample = [
     emp_salary: '5,00,000',
     emp_photo_path: require('../Assets/images/MZ.jpeg'),
     emp_Timeline_path: require('../Assets/images/MZTL.jpg'),
+    latitude: 17.389991,
+    longitude: 78.383301,
   },
   {
     emp_name: 'Suresh',
@@ -42,6 +48,8 @@ export const Sample = [
     emp_salary: '10,00,000',
     emp_photo_path: require('../Assets/images/jef.jpg'),
     emp_Timeline_path: require('../Assets/images/JefTL.jpg'),
+    latitude: 17.481034,
+    longitude: 78.412899,
   },
   {
     emp_name: 'Reddy',
@@ -53,6 +61,8 @@ export const Sample = [
     emp_salary: '2,00,000',
     emp_photo_path: require('../Assets/images/elon.jpg'),
     emp_Timeline_path: require('../Assets/images/elonTL.jpg'),
+    latitude: 17.423962,
+    longitude: 78.486352,
   },
   {
     emp_name: 'Akash',
@@ -64,6 +74,8 @@ export const Sample = [
     emp_salary: '10,00,000',
     emp_photo_path: require('../Assets/images/MZ.jpeg'),
     emp_Timeline_path: require('../Assets/images/MZTL.jpg'),
+    latitude: 17.438478,
+    longitude: 78.362724,
   },
   {
     emp_name: 'Naresh',
@@ -75,6 +87,8 @@ export const Sample = [
     emp_salary: '2,00,000',
     emp_photo_path: require('../Assets/images/jef.jpg'),
     emp_Timeline_path: require('../Assets/images/JefTL.jpg'),
+    latitude: 17.399831,
+    longitude: 78.350343,
   },
   {
     emp_name: 'Raju',
@@ -86,6 +100,8 @@ export const Sample = [
     emp_salary: '10,00,000',
     emp_photo_path: require('../Assets/images/elon.jpg'),
     emp_Timeline_path: require('../Assets/images/elonTL.jpg'),
+    latitude: 17.408989,
+    longitude: 78.375754,
   },
   {
     emp_name: 'Rakesh',
@@ -97,5 +113,7 @@ export const Sample = [
     emp_salary: '2,00,000',
     emp_photo_path: require('../Assets/images/MZ.jpeg'),
     emp_Timeline_path: require('../Assets/images/MZTL.jpg'),
+    latitude: 17.325023,
+    longitude: 78.4780001,
   },
 ];

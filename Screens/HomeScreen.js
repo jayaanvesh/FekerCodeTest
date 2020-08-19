@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   Image,
   AsyncStorage,
+  ScrollView,
+  Dimensions,
 } from 'react-native';
 import { Sample } from './SampleObj';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -22,6 +24,7 @@ class HomeScreen extends Component {
       search: '',
       selectedValue: null,
       dep: [],
+      alphabet: [],
     };
   }
 
@@ -36,6 +39,11 @@ class HomeScreen extends Component {
       }
     });
     this.setState({ dep });
+    let alphabet = [];
+    for (i = 0; i < 26; i++) {
+      alphabet.push((i + 10).toString(36));
+    }
+    this.setState({ alphabet });
   }
 
   logout = () => {
@@ -51,6 +59,27 @@ class HomeScreen extends Component {
     } else {
       let newArray = Sample.filter((e) => e.emp_department == value);
       this.setState({ data: newArray });
+    }
+  };
+
+  specific = (search) => {
+    let text = search.toLowerCase();
+    let data = Sample;
+    let filteredData = data.filter((item) => {
+      return item.emp_name.toLowerCase().match(text);
+    });
+    if (!text || text === '') {
+      let data = _.orderBy(Sample, ['emp_name'], ['asc']);
+      this.setState({
+        data,
+      });
+    } else if (_.isEmpty(filteredData)) {
+      this.setState({ data: [] });
+    } else {
+      let data = _.orderBy(filteredData, ['emp_name'], ['asc']);
+      this.setState({
+        data,
+      });
     }
   };
 
@@ -96,13 +125,19 @@ class HomeScreen extends Component {
               padding: 4,
             }}
             value={this.state.search}
-            onChangeText={(search) => this.setState({ search })}
+            onChangeText={(search) =>
+              this.setState({ search }, () => {
+                this.specific(search);
+              })
+            }
           />
         </View>
-        <View>
+        <View
+          style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}
+        >
           <Picker
             selectedValue={this.state.selectedValue}
-            style={{ height: 50 }}
+            style={{ height: 50, width: 200, marginLeft: 20 }}
             onValueChange={(value) => {
               this.changeHandler(value);
             }}
@@ -111,32 +146,73 @@ class HomeScreen extends Component {
               <Picker.Item key={i} label={res} value={res} />
             ))}
           </Picker>
+          <View style={{ marginRight: 20 }}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.navigation.navigate('UserLoc');
+              }}
+            >
+              <Icon name={'location-on'} color={'black'} size={30} />
+            </TouchableOpacity>
+          </View>
         </View>
-        <FlatList
-          data={this.state.data}
-          keyExtractor={(item) => item.emp_id}
-          ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
-          renderItem={({ item }) => {
-            return (
-              <View style={styles.container}>
-                <TouchableOpacity
-                  onPress={() =>
-                    this.props.navigation.navigate('UserTabView', { userDeatils: item })
-                  }
-                >
-                  <View style={styles.sec}>
-                    <Image source={item.emp_photo_path} style={styles.img} />
-                    <View>
-                      <Text style={styles.empName}>{item.emp_name}</Text>
-                      <Text>{item.emp_designation}</Text>
-                      <Text>{item.emp_department}</Text>
+        <View style={{ flexDirection: 'row' }}>
+          <FlatList
+            data={this.state.data}
+            keyExtractor={(item) => item.emp_id}
+            ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => {
+              return (
+                <View style={styles.container}>
+                  <TouchableOpacity
+                    onPress={() =>
+                      this.props.navigation.navigate('UserTabView', { userDeatils: item })
+                    }
+                  >
+                    <View style={styles.sec}>
+                      <Image source={item.emp_photo_path} style={styles.img} />
+                      <View>
+                        <Text style={styles.empName}>{item.emp_name}</Text>
+                        <Text>{item.emp_designation}</Text>
+                        <Text>{item.emp_department}</Text>
+                      </View>
                     </View>
-                  </View>
-                </TouchableOpacity>
+                  </TouchableOpacity>
+                </View>
+              );
+            }}
+          />
+          <View style={{ width: 35, marginTop: 10, flex: 1 }}>
+            <ScrollView
+              showsVerticalScrollIndicator={false}
+              style={{
+                width: 28,
+                backgroundColor: 'white',
+                // borderRadius: 20,
+                alignSelf: 'center',
+                paddingTop: 10,
+              }}
+            >
+              <View>
+                {this.state.alphabet.map((res) => (
+                  <Text
+                    key={res}
+                    style={{
+                      alignSelf: 'center',
+                      marginVertical: 5,
+                      fontSize: 15,
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    {res}
+                  </Text>
+                ))}
               </View>
-            );
-          }}
-        />
+            </ScrollView>
+            <View style={{ height: 10 }}></View>
+          </View>
+        </View>
       </>
     );
   }

@@ -75,7 +75,12 @@ export class UserTabView extends Component {
                   borderRadius: 50,
                 }}
               >
-                <Icon name={'edit'} color={'white'} size={17} />
+                <Icon
+                  name={'location-on'}
+                  color={'white'}
+                  size={17}
+                  onPress={() => this.props.navigation.navigate('UserLoc')}
+                />
               </View>
             </View>
             <Text style={{ color: 'white', paddingTop: 5, fontSize: 18, fontWeight: '700' }}>

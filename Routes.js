@@ -7,6 +7,7 @@ import Auth from './Screens/Auth';
 import HomeScreen from './Screens/HomeScreen';
 import SignInScreen from './Screens/SignInScreen';
 import UserTabView from './Screens/UserTabView';
+import UserLoc from './Screens/UserLoc';
 
 class Routes extends Component {
   constructor() {
@@ -26,6 +27,7 @@ class Routes extends Component {
           <Stack.Screen name='SignInScreen' component={SignInScreen} />
           <Stack.Screen name='Home' component={HomeScreen} />
           <Stack.Screen name='UserTabView' component={UserTabView} />
+          <Stack.Screen name='UserLoc' component={UserLoc} />
         </Stack.Navigator>
       </NavigationContainer>
     );
