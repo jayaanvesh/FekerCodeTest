@@ -14,7 +14,7 @@ class SignScreen extends Component {
   submit = () => {
     if (this.state.username == 'test' && this.state.password == 'test') {
       AsyncStorage.setItem('user', 'test');
-      this.props.navigation.navigate('Auth');
+      this.props.navigation.navigate('Home');
     } else {
       alert('Invalid credentials');
     }
